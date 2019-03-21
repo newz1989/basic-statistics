@@ -3,12 +3,14 @@
  */
 package ua.com.dzlobenets.statistics;
 
+import ua.com.dzlobenets.stat.lib.Statistics;
+
 public class App {
     public String getGreeting() {
         return "Hello world.";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Statistics.test();
     }
 }
