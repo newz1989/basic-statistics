@@ -3,14 +3,17 @@
  */
 package ua.com.dzlobenets.statistics;
 
-import ua.com.dzlobenets.stat.lib.Statistics;
+import ua.com.dzlobenets.stat.lib.MeasureOfCentralTendency;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
 
     public static void main(String[] args) {
-        Statistics.test();
+        final List<? extends Number> numbers = Arrays.asList(33.54, 545, 44.56, 453, 435, 55, 44, 33, 33);
+        Number mode = MeasureOfCentralTendency.mode(numbers);
+        System.out.println("Mode of: " + numbers);
+        System.out.println(" " + mode);
     }
 }
