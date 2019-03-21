@@ -1,3 +1,9 @@
 plugins{
 	id 'java'
 }
+
+dependencies {
+
+	// https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305
+	compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
+}
