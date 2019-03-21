@@ -1,2 +1,2 @@
 # basic-statistics
-learn 
+learn basic statistics
