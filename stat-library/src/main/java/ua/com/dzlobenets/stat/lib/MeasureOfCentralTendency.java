@@ -1,8 +1,8 @@
 package ua.com.dzlobenets.stat.lib;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -10,11 +10,13 @@ import java.util.stream.Collectors;
  * {mode, average, median}
  */
 public class MeasureOfCentralTendency {
+
     /**
      * return value which occur maximum times
      */
     @Nonnull
     public static <T extends Number> T mode(@Nonnull Collection<T> data) {
+
         final Map<T, Long> collect = data.stream().collect(
                 Collectors.groupingBy(
                         s -> s,
@@ -27,10 +29,44 @@ public class MeasureOfCentralTendency {
                 .get();
     }
 
-
-    public static <T extends Number> Double avg(@Nonnull Collection<T> data) {
+    @Nonnull
+    public static <T extends Number>
+    Double avg(@Nonnull Collection<T> data) {
         return data.stream()
                 .collect(Collectors.averagingDouble(Number::doubleValue));
+    }
+
+    @Nonnull
+    public static <T extends Number & Comparable<? super T>>
+    Double median(final @Nonnull Collection<T> data) {
+
+        final List<T> list = new ArrayList<>(data);
+        list.sort(Comparator.naturalOrder());
+
+        int size = data.size();
+
+        if (even(size)) {
+            final int half = size / 2;
+            T median1 = list.get(half);
+            T median2 = list.get(half - 1);
+
+            return calculateMedian(median1, median2);
+        } else {
+            return list.get(size / 2).doubleValue();
+        }
+    }
+
+    private static boolean even(@Nonnegative int size) {
+        return (size % 2) == 0;
+    }
+
+    @Nonnull
+    private static <T extends Number & Comparable<? super T>>
+    Double calculateMedian(@Nonnull T median1, @Nonnull T median2) {
+        final double doubleMedian1 = median1.doubleValue();
+        final double doubleMedian2 = median2.doubleValue();
+
+        return (doubleMedian1 + doubleMedian2) / 2d;
     }
 
 }
