@@ -31,7 +31,7 @@ public class MeasureOfCentralTendency {
 
     @Nonnull
     public static <T extends Number>
-    Double avg(@Nonnull Collection<T> data) {
+    Double mean(@Nonnull Collection<T> data) {
         return data.stream()
                 .collect(Collectors.averagingDouble(Number::doubleValue));
     }
@@ -45,7 +45,7 @@ public class MeasureOfCentralTendency {
 
         int size = data.size();
 
-        if (even(size)) {
+        if (even(size)) {E
             final int half = size / 2;
             T median1 = list.get(half);
             T median2 = list.get(half - 1);
