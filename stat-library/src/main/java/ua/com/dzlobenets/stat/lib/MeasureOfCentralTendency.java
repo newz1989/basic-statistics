@@ -45,7 +45,7 @@ public class MeasureOfCentralTendency {
 
         int size = data.size();
 
-        if (even(size)) {E
+        if (even(size)) {
             final int half = size / 2;
             T median1 = list.get(half);
             T median2 = list.get(half - 1);
